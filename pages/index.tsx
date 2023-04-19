@@ -19,12 +19,12 @@ export default function Index() {
             </Head>
         <div className='bg-[#04081a] min-h-screen'>
             <div className="flex justify-center pr-14">
-                <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-1">
+                <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 font-Rubik">
                     Andrew 
                 </h1>
             </div>
             <div className ="flex justify-center pl-14">  
-                <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-1">
+                <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 font-Rubik">
                     Schmitz
                 </h1>
             </div>
