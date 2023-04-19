@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Head from 'next/head'
 
+import SocialLink from '../components/SocialLink'
+
 export default function Index() {
     return (
         <div>
@@ -29,18 +31,23 @@ export default function Index() {
                     </h1>
                 </div>
                 <div className="max-w-4xl mx-auto pt-10 px-6">
-                    <div className="text-slate-300 font-semibold md:text-lg font-Rubik">
-                        <p className=" ">I&apos;m a software developer creating &nbsp;
+                    <div className="text-slate-300 font-semibold font-Rubik">
+                        <p className="md:text-lg">I&apos;m a software developer creating &nbsp;
                             <a href="https://www.promptgallery.app/" target="_blank" className="underline ">promptgallery.app</a>.
                             I'm also studying Data Science at UCSD, but honestly, I hate it. I'm terrified of the idea
                             of growing up and becoming a spreadsheet monkey or developing algorithims just to get
                             people to click on ads more.
                         </p>
-                        <p className="pt-4">
+                        <p className="pt-4 mg:text-lg">
                             Instead, I&apos;m working towards becoming some sort of entrepreneur. The process of creating a product,
                             getting told said product sucks, and iterating on it has a much better chance of getting me out of bed
                             in the morning.
                         </p>
+                    
+                    <h2 className = "font-bold md:text-xl  pt-8  ">More Andrew Schmitz:</h2>
+                        <SocialLink link="https://twitter.com/Big_Schmitz" service = "twitter" quote = "Maybe I should stop being real, maybe I should get on Twitter"/>
+                        <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "All my good code is in private repos ;)" />
+                        <SocialLink link= "https://www.linkedin.com/in/andrew-schmitz-/" service = "linkedin" quote = "My real jobs" />
                     </div>
                 </div>
             </div>
