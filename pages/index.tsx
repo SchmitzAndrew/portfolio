@@ -20,34 +20,38 @@ export default function Index() {
                 <meta name="theme-color" content="#ffffff" />
             </Head>
             <div className='bg-[#04081a] min-h-screen'>
-                <div className="flex justify-center pr-14">
-                    <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
-                        Andrew
-                    </h1>
-                </div>
-                <div className="flex justify-center pl-14">
-                    <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
-                        Schmitz
-                    </h1>
+                <div className = "pt-4">
+                    <div className="flex justify-center pr-14">
+                        <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
+                            Andrew
+                        </h1>
+                    </div>
+                    <div className="flex justify-center pl-14">
+                        <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
+                            Schmitz
+                        </h1>
+                    </div>
                 </div>
                 <div className="max-w-4xl mx-auto pt-10 px-6">
                     <div className="text-slate-300 font-semibold font-Rubik">
                         <p className="md:text-lg">I&apos;m a software developer creating &nbsp;
-                            <a href="https://www.promptgallery.app/" target="_blank" className="underline ">promptgallery.app</a>.
+                            <a href="https://www.profilepro.ai" target="_blank" className="underline ">profilepro.ai</a>.
                             I'm also studying Data Science at UCSD, but honestly, I hate it. I'm terrified of the idea
                             of growing up and becoming a spreadsheet monkey or developing algorithims just to get
                             people to click on ads more.
                         </p>
-                        <p className="pt-4 mg:text-lg">
+                        <p className="pt-4 text-lg">
                             Instead, I&apos;m working towards becoming some sort of entrepreneur. The process of creating a product,
                             getting told said product sucks, and iterating on it has a much better chance of getting me out of bed
                             in the morning.
                         </p>
                     
-                    <h2 className = "font-bold md:text-xl  pt-8  ">More Andrew Schmitz:</h2>
+                    <h2 className = "font-bold md:text-xl  pt-8 ">More Andrew Schmitz:</h2>
+                    <div className = "pl-6">
                         <SocialLink link="https://twitter.com/Big_Schmitz" service = "twitter" quote = "Maybe I should stop being real, maybe I should get on Twitter"/>
                         <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "All my good code is in private repos ;)" />
-                        <SocialLink link= "https://www.linkedin.com/in/andrew-schmitz-/" service = "linkedin" quote = "My real jobs" />
+                        <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "I ❤️ corporate America" />
+                    </div>
                     </div>
                 </div>
             </div>
