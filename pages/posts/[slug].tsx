@@ -30,7 +30,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
                 <meta property="og:image" content={post.meta.imageSrc} />
                 <meta property="og:type" content="article" />
                 <meta property="og:article:published_time" content={post.meta.date} />
-                <meta property="og:site_name" content="Profile Pro" />
+                <meta property="og:site_name" content="aschmitz.dev" />
             </Head>
             
                 <h1 title={post.meta.title} />
