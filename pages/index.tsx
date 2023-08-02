@@ -51,13 +51,13 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                         </p>
                     
                     <h2 className = "font-bold md:text-xl  pt-8 ">Recent Articles:</h2>
-                    <Articles  posts = {posts} />
+                    <Articles posts = {posts}/ >
 
                     <h2 className = "font-bold md:text-xl  pt-8 ">More Andrew Schmitz:</h2>
                     <div className = "pl-6">
                         <SocialLink link="https://twitter.com/Big_Schmitz" service = "twitter" quote = "Maybe I should stop being real, maybe I should get on Twitter"/>
                         <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "All my good code is in private repos ;)" />
-                        <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "I ❤️ corporate America" />
+                        <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "My real jobs" />
                     </div>
                     </div>
                 </div>
@@ -67,13 +67,8 @@ export default function Index({posts}: {posts: PostMeta[]}) {
 }
 
 export async function getStaticProps() {
-    const posts = await getAllPosts()
-        .map((post) => post.meta)
-    return {
-        props: {
-            posts,
-        },
-    };
+    const posts = getAllPosts()
+        .map((post) => post.meta);
+    console.log(posts)
+    return { props: { posts } };
 }
-
-

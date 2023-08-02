@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import  {getAllPosts} from "@/src/api";
+import type { GetStaticProps } from "next";
 import type { PostMeta } from "@/src/api";
 
+
 // explicitly add "/posts to href"
-export default function Articles({ posts }: { posts: PostMeta[] }) {
+export default function Articles({posts}: {posts: PostMeta[]}) {
+    
     return (
         <>
             <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -42,3 +46,6 @@ export default function Articles({ posts }: { posts: PostMeta[] }) {
     )
 
 }
+
+
+
