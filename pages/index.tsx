@@ -26,12 +26,12 @@ export default function Index({posts}: {posts: PostMeta[]}) {
             <div className='bg-[#04081a] min-h-screen'>
                 <div className = "pt-4">
                     <div className="flex justify-center pr-14">
-                        <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
+                        <h1 className="title-gradient text-6xl md:text-8xl  text-center px-4 ">
                             Andrew
                         </h1>
                     </div>
                     <div className="flex justify-center pl-14">
-                        <h1 className="title-gradient text-6xl md:text-8xl font-bold text-center italic px-4 ">
+                        <h1 className="title-gradient text-6xl md:text-8xl  text-center px-4 ">
                             Schmitz
                         </h1>
                     </div>

@@ -21,6 +21,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+
+    font-weight: bold;
+    font-style: italic;
 }
 
 @-webkit-keyframes title-gradient {

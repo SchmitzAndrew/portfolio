@@ -1,5 +1,6 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/image";
+import Layout from "@/components/page/Layout";
 import Head from "next/head";
 
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -32,7 +33,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
                 <meta property="og:article:published_time" content={post.meta.date} />
                 <meta property="og:site_name" content="aschmitz.dev" />
             </Head>
-            
+                <Layout>
                 <h1 title={post.meta.title} />
                 <div className="pt-8">
                     <div className="prose prose-slate lg:prose-lg \
@@ -45,6 +46,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
                         <MDXRemote {...post.source} components={{ YouTube, Figure, CustomLink }} />
                     </div>
                 </div>
+            </Layout>
             
         </>
     );
