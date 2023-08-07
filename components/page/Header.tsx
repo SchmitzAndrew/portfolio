@@ -5,17 +5,17 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from "next/link";
 
 const navigation = [
-    { name: 'Stuff', href: '#' },
-    { name: 'Things', href: '#' },
-    { name: 'Contact Me Plz', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Profile Pro', href: 'https://profilepro.ai' },
+    { name: 'Contact Me :)', href: '#' },
 ]
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
-        <header className="bg-[#04081a] rounded-3xl mx-4 mt-2">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between p-2 " aria-label="Global">
+        <header className="bg-[#04081a] ">
+            <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3 " aria-label="Global">
                 <Link href="/" className=" p-1.5">
                     <span className="sr-only">Andrew Schmitz</span>
                     <p className="title-gradient text-3xl ">Andrew Schmitz </p>
