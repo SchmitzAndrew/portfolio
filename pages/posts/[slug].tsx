@@ -31,7 +31,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
                 <meta property="og:image" content={post.meta.imageSrc} />
                 <meta property="og:type" content="article" />
                 <meta property="og:article:published_time" content={post.meta.date} />
-                <meta property="og:site_name" content="aschmitz.dev" />
+                <meta property="og:site_name" content="bigschmitz.com" />
             </Head>
                 <Layout>
                 <h1 title={post.meta.title} />
