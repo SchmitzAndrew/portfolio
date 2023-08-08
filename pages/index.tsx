@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Head from 'next/head'
 
 import Articles from '../components/Articles'
@@ -9,13 +8,12 @@ import { getAllPosts, PostMeta } from '@/src/api'
 
 export default function Index({posts}: {posts: PostMeta[]}) {
     return (
-        <div>
+        <>
             <Head>
                 <title>Andrew Schmitz</title>
                 <meta name="description" content="Andrew Schmitz's portfolio." />
                 <meta property="og:title" content="Andrew Schmitz" />
                 <meta property="og:description" content="Andrew Schmitz's portfolio." />
-                
             </Head>
             <div className='bg-[#04081a] min-h-screen'>
                 <div className = "pt-4">
@@ -30,10 +28,10 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                         </h1>
                     </div>
                 </div>
-                <div className="max-w-4xl mx-auto pt-10 px-6">
+                <div className="max-w-4xl mx-auto pt-10 pb-6 px-6">
                     <div className="text-slate-300 font-semibold font-Rubik">
                         <p className="md:text-lg">I&apos;m a software developer creating &nbsp;
-                            <a href="https://profilepro.ai" target="_blank" className="underline ">profilepro.ai</a>.
+                            <a href="https://profilepro.ai" target="_blank" className="underline text-sky-400">profilepro.ai</a>.
                             I'm also studying Data Science at UCSD, but honestly, I hate it. I'm terrified of the idea
                             of growing up and becoming a spreadsheet monkey or developing algorithims just to get
                             people to click on ads more.
@@ -53,10 +51,21 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                         <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "All my good code is in private repos ;)" />
                         <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "My real jobs" />
                     </div>
+
+                    <h2 className = "font-bold md:text-xl  pt-8 ">Contact Me:</h2>
+                    
+                    <p className = "pt-4 text-lg">
+                        I am not popular enough to get flooded with messages, so feel free to send me an email at&nbsp;
+                        <span className = "text-sky-400"> 
+                        schmitzandrew03@gmail.com
+                        </span> 
+                        . I'm always happy to meet other silly entrepreneur people. 
+                    </p>
                     </div>
                 </div>
             </div>
-        </div>
+            
+        </>
     );
 }
 
