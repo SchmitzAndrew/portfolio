@@ -37,9 +37,8 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                             people to click on ads more.
                         </p>
                         <p className="pt-4 text-lg">
-                            Instead, I&apos;m working towards becoming some sort of entrepreneur. The process of creating a product,
-                            getting told said product sucks, and iterating on it has a much better chance of getting me out of bed
-                            in the morning.
+                            Instead, I&apos;m trying to do my own thing. I'm not really sure what I want to do with my life yet, but it's definitely not sitting
+                            at a desk somewhere for 8 hours a day. 
                         </p>
                     
                     <h2 className = "font-bold md:text-xl  pt-8 ">Recent Articles:</h2>
