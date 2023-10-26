@@ -4,8 +4,9 @@ interface SocialLinkProps {
     link: string;
     service: string;
     quote: string;
+    text_style: string;
 }
-export default function SocialLink({ link, service, quote, }: SocialLinkProps) {
+export default function SocialLink({ link, service, quote, text_style }: SocialLinkProps) {
     return (
         <div className="pt-4">
             <a href={link} target="_blank" className="flex flex-row ">
@@ -15,7 +16,7 @@ export default function SocialLink({ link, service, quote, }: SocialLinkProps) {
                     width={25}
                     height={25}
                 />
-                <p className="pl-4">"{quote}"</p>
+                <p className={text_style}>{quote}</p>
             </a>
         </div>
     )

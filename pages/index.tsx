@@ -42,13 +42,13 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                         </p>
                     
                     <h2 className = "font-bold md:text-xl  pt-8 ">Recent Articles:</h2>
-                    <Articles posts = {posts}/ >
+                    <Articles posts = {posts} />
 
                     <h2 className = "font-bold md:text-xl  pt-8 ">More Andrew Schmitz:</h2>
                     <div className = "pl-6">
-                        <SocialLink link="https://twitter.com/Big_Schmitz" service = "twitter" quote = "Maybe I should stop being real, maybe I should get on Twitter"/>
-                        <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "All my good code is in private repos ;)" />
-                        <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "My real jobs" />
+                        <SocialLink link="https://twitter.com/Big_Schmitz" service = "twitter" quote = "&quot;Maybe I should stop being real, maybe I should get on Twitter&quot;" text_style="pl-4"/>
+                        <SocialLink link= "https://github.com/SchmitzAndrew" service = "github" quote = "&quot;All my good code is in private repos ;)&quot;" text_style="pl-4"/>
+                        <SocialLink link="https://www.linkedin.com/in/andrew-schmitz-/" service="linkedin" quote= "&quot;My real jobs&quot;"  text_style="pl-4"/>
                     </div>
 
                     <h2 className = "font-bold md:text-xl  pt-8 ">Contact Me:</h2>
