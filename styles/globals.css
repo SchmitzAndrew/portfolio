@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* https://www.gradient-animator.com/ */
 /* Styling for Header */
 .title-gradient{
     /* Fallback: Set a background color. */
