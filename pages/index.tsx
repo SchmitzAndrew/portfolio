@@ -32,7 +32,7 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                     <div className="text-slate-300 font-semibold font-Rubik">
                         <p className="md:text-lg">I&apos;m a software developer creating &nbsp;
                             <a href="https://usestylize.com" target="_blank" className="underline text-sky-400">usestylize.com</a> &nbsp;
-                            and 
+                            and &nbsp;
                             <a href="https://usemoment.ai" target="_blank" className="underline text-sky-400">usemoment.ai</a>.
                             I'm also studying Data Science at UCSD, but honestly, I hate it. I'm terrified of the idea
                             of growing up and becoming a spreadsheet monkey or developing algorithms just to get
