@@ -54,11 +54,11 @@ export default function Index({posts}: {posts: PostMeta[]}) {
                     <h2 className = "font-bold md:text-xl  pt-8 ">Contact Me:</h2>
                     
                     <p className = "pt-4 text-lg">
-                        I am not popular enough to get flooded with messages, so feel free to send me an email at&nbsp;
+                        Please contact me at &nbsp;
                         <span className = "text-sky-400"> 
                         schmitzandrew03@gmail.com
                         </span> 
-                        . I'm always happy to meet other silly entrepreneur people. 
+                        . I'm always happy to meet other silly entrepreneur people :)
                     </p>
                     </div>
                 </div>
