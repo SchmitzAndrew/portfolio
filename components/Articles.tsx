@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import  {getAllPosts} from "@/src/api";
+import  {getAllPosts} from "@/lib/api";
 import type { GetStaticProps } from "next";
-import type { PostMeta } from "@/src/api";
+import type { Post } from "@/interfaces/post";
 
 
 // explicitly add "/posts to href"
-export default function Articles({posts}: {posts: PostMeta[]}) {
-    
+export default function Articles({posts}: {posts: Post[]}) {
     return (
         <>
             <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -16,7 +15,7 @@ export default function Articles({posts}: {posts: PostMeta[]}) {
                         <Link href={`/posts/${post.slug}`}>
                             <div className="relative w-full">
                                 <Image
-                                    src={post.imageSrc}
+                                    src={post.coverImage}
                                     alt=""
                                     height="600"
                                     width="800"
@@ -26,7 +25,7 @@ export default function Articles({posts}: {posts: PostMeta[]}) {
                             </div>
                             <div className="max-w-xl p-2">
                                 <div className=" flex items-center gap-x-4 text-xs">
-                                    <time dateTime={post.date} className="text-slate-500">
+                                    <time dateTime={post.date} className="text-slate-400">
                                         {new Date(post.date).toLocaleDateString()}
                                     </time>
                                 </div>
@@ -35,7 +34,6 @@ export default function Articles({posts}: {posts: PostMeta[]}) {
                                         <span className="absolute inset-0" />
                                         {post.title}
                                     </h3>
-                                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-gray-700">{post.excerpt}</p>
                                 </div>
                             </div>
                         </Link>
