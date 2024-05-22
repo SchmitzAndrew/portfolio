@@ -7,7 +7,6 @@ import SocialLink from "@/components/SocialLink";
 export default function Index() {
     const allPosts = getAllPosts();
 
-
     return (
         <main>
 
