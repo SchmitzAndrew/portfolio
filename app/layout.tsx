@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: `Andrew Schmitz`,
   description: `Andrew Schmitz's portfolio.`,
   openGraph: {
-    images: "/og.png",
+    images: "/images/og.png",
   },
 };
 
