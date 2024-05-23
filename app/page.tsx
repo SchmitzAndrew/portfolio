@@ -9,13 +9,6 @@ export default function Index() {
 
     return (
         <main>
-
-            <Head>
-                <title>Andrew Schmitz</title>
-                <meta name="description" content="Andrew Schmitz's portfolio." />
-                <meta property="og:title" content="Andrew Schmitz" />
-                <meta property="og:description" content="Andrew Schmitz's portfolio." />
-            </Head>
             <div className='bg-[#04081a] min-h-screen'>
                 <div className="pt-4">
                     <div className="flex justify-center pr-14">

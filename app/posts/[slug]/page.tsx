@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
-import Container from "@/components/Container";
+
 import Header from "@/components/Header";
 import { PostBody } from "@/components/post-body";
 import { PostHeader } from "@/components/post-header";
@@ -18,18 +18,15 @@ export default async function Post({ params }: Params) {
 
   return (
     <main>
-      <Container>
         <Header />
         <article className="mb-32">
           <PostHeader
             title={post.title}
             coverImage={post.coverImage}
             date={post.date}
-            author={post.author}
           />
           <PostBody content={content} />
         </article>
-      </Container>
     </main>
   );
 }
@@ -54,6 +51,11 @@ export function generateMetadata({ params }: Params): Metadata {
     openGraph: {
       title,
       images: [post.ogImage.url],
+    },
+    description: post.excerpt,
+    twitter: {
+      title,
+      description: post.excerpt,
     },
   };
 }

@@ -1,13 +1,10 @@
 ---
-title: "Learn How to Pre-render Pages Using Static Generation with Next.js"
+title: "Making My First Dollar On The Internet"
 excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
-coverImage: "/assets/blog/covers/cover.jpg"
+coverImage: "/images/blog/covers/cover.jpg"
 date: "2024-05-22"
-author:
-  name: Andrew Schmitz
-  picture: "/assets/blog/authors/tim.jpeg"
 ogImage:
-  url: "/assets/blog/covers/cover.jpg"
+  url: "/images/blog/covers/cover.jpg"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
