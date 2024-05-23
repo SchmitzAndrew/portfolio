@@ -11,7 +11,7 @@ export default function SocialLink({ link, service, quote, text_style }: SocialL
         <div className="pt-4">
             <a href={link} target="_blank" className="flex flex-row ">
                 <Image
-                    src={`/link_icons/${service}.svg`}
+                    src={`/images/icons/${service}.svg`}
                     alt={`${service} Icon`}
                     width={25}
                     height={25}
