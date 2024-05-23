@@ -1,36 +1,39 @@
-import Avatar from "./avatar";
-import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "./post-title";
+
+import Image from "next/image";
 
 type Props = {
   title: string;
   coverImage: string;
   date: string;
-  
+
 };
 
-export function PostHeader({ title, coverImage, date,}: Props) {
+export function PostHeader({ title, coverImage, date, }: Props) {
   return (
     <>
-      <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-      <div className="flex items-center">
-      <img src={"/images/profile_picture.png"} className="w-12 h-12 rounded-full mr-4" alt={"Andrew Schmitz"} />
-      <div className="text-xl font-bold">Andrew Schmitz</div>
-    </div>
-      </div>
+      <h1 className="text-3xl md:text-7xl font-bold tracking-tighter leading-tight md:leading-none py-6 text-center  text-gray-50">
+        {title}
+      </h1>
+      
       <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
+        <Image
+          src={coverImage}
+          alt={`Cover Image for ${title}`}
+          className="shadow-sm w-full"
+          width={1300}
+          height={630}
+        />
       </div>
       <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-        <div className="flex items-center">
-      <img src={"/images/profile_picture.png"} className="w-12 h-12 rounded-full mr-4" alt={"Andrew Schmitz"} />
-      <div className="text-xl font-bold">Andrew Schmitz</div>
-    </div>
+        <div className="block mb-6">
+          <div className="flex items-center">
+            <img src={"/images/profile_picture.png"} className="w-8 h-8 rounded-full mr-4" alt={"Andrew Schmitz"} />
+            <p className="text-xl font-bold text-gray-50">Andrew Schmitz</p>
+          </div>
         </div>
-        <div className="mb-6 text-lg">
+        <div className="mb-6 text-lg text-gray-50">
           <DateFormatter dateString={date} />
         </div>
       </div>
