@@ -1,11 +1,11 @@
-import { getAllPosts } from "@/lib/api";
+import { getBlogPosts } from "@/lib/utils";
 
 import Head from 'next/head';
 import Articles from "@/components/Articles";
 import SocialLink from "@/components/SocialLink";
 
 export default function Index() {
-    const allPosts = getAllPosts();
+    const allPosts = getBlogPosts();
 
     return (
         <main>

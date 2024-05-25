@@ -1,4 +1,4 @@
-import DateFormatter from "./date-formatter";
+import { formatDate } from "@/lib/utils";
 import { PostTitle } from "./post-title";
 
 import Image from "next/image";
@@ -34,7 +34,7 @@ export function PostHeader({ title, coverImage, date, }: Props) {
           </div>
         </div>
         <div className="mb-6 text-lg text-gray-50">
-          <DateFormatter dateString={date} />
+          {formatDate(date)}
         </div>
       </div>
     </>
