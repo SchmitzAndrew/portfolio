@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import React from 'react'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 
 function Table({ data }: any) {

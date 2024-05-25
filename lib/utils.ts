@@ -52,7 +52,7 @@ function getMDXData(dir: string): BlogPost[] {
             slug,
             content,
         };
-    }).filter((post): post is BlogPost => post !== null); // Type guard to ensure no nulls
+    });
     return posts;
 }
 
