@@ -1,4 +1,4 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
