@@ -9,9 +9,6 @@ import Articles from "@/components/Articles";
 
 import data from "@/data.json";
 
-import { motion } from "framer-motion";
-
-
 export default function Index() {
     const allPosts = getBlogPosts();
 
