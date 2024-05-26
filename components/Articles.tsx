@@ -23,7 +23,7 @@ export default function Articles({ posts }: { posts: BlogPost[] }) {
             <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 {posts.map((post) => (
                     <article key={post.slug} className="flex flex-col items-start justify-between rounded-md shadow-inner">
-                        <Link href={`/posts/${post.slug}`}>
+                        <Link href={`/blog/${post.slug}`}>
                             <div className="relative w-full">
                                 <Image
                                     src={post.metadata.coverImage}

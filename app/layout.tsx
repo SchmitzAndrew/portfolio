@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-[#050815]">
       <head>
         <link
           rel="apple-touch-icon"
@@ -56,7 +56,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className={inter.className}>
-        <div className="min-h-screen bg-[#04081a]">{children}</div>
+        <div className="">{children}</div>
         <Footer />
       </body>
     </html>
