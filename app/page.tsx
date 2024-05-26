@@ -1,9 +1,15 @@
+
+
 import { getBlogPosts } from "@/lib/utils";
 
-import Head from 'next/head';
+import AnimatedName from "@/components/AnimatedName";
+
 import Articles from "@/components/Articles";
 
+
 import data from "@/data.json";
+
+import { motion } from "framer-motion";
 
 
 export default function Index() {
@@ -11,18 +17,7 @@ export default function Index() {
 
     return (
         <main>
-                <div className="pt-4">
-                    <div className="flex justify-center pr-14">
-                        <h1 className="title-gradient text-6xl md:text-8xl  text-center px-4 ">
-                            Andrew
-                        </h1>
-                    </div>
-                    <div className="flex justify-center pl-14">
-                        <h1 className="title-gradient text-6xl md:text-8xl  text-center px-4 ">
-                            Schmitz
-                        </h1>
-                    </div>
-                </div>
+            <AnimatedName/>
                 <div className="max-w-4xl mx-auto pt-10 pb-6 px-6">
                     <div className="text-gray-100 font-semibold ">
                         <p className="md:text-lg">I&apos;m a software developer creating&nbsp;
