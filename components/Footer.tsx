@@ -31,7 +31,7 @@ const navigation = [
     },
     {
         name: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/andrew-schmitz-/',
+        href: 'https://www.linkedin.com/in/schmitz-andrew/',
         icon: (props: any) => (
             <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
                 <title>LinkedIn</title>
