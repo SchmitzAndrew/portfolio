@@ -1,10 +1,12 @@
 "use client"
 
+import Link from "next/link";
+
 import { motion } from 'framer-motion'
 
 export default function AnimatedName() {
     return (
-        <div>
+        <Link href="/">
             <motion.div 
                 className="pt-4"
                 initial={{ opacity: 0.2 }}
@@ -42,6 +44,7 @@ export default function AnimatedName() {
                     </motion.h1>
                 </motion.div>
             </motion.div>
-        </div>
+        </Link>
     )
 }
+

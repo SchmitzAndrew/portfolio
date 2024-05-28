@@ -60,8 +60,10 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className={inter.className}>
-        <div className="">{children}</div>
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </div>
       </body>
       <GoogleAnalytics gaId="G-GEJRNRSJXG"/>
     </html>
