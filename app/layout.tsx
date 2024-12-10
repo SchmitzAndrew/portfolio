@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,7 +61,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
           <main className="flex-grow">{children}</main>
-          <Footer />
         </div>
       </body>
       <GoogleAnalytics gaId="G-GEJRNRSJXG"/>

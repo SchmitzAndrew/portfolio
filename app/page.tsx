@@ -1,5 +1,3 @@
-
-
 import { getBlogPosts } from "@/lib/utils";
 
 import AnimatedName from "@/components/AnimatedName";
