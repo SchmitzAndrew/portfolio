@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import { getBlogPosts } from "@/lib/utils";
 
-
-
 import Header from "@/components/Header";
 
 import Image from "next/image";
