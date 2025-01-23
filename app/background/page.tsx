@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createNoise2D } from 'simplex-noise';
 import { TAU, rand, fadeInOut } from './utils';
 
@@ -10,16 +10,56 @@ const PARAMS = {
     SPEED: { BASE: 0.045, RANGE: 0.06 },
     LIFETIME: { BASE: 250, RANGE: 300 },
     RADIUS: { BASE: 140, RANGE: 220 },
-    COLOR: {
-        HUE_RANGE: 120,
-        SATURATION: 55,
-        LIGHTNESS: 50,
-        ALPHA: 0.4,
-        HUE_SPEED: 0.3
+    DARK: {
+        BASE_HUE: 220,
+        COLOR: {
+            HUE_RANGE: 120,
+            SATURATION: 55,
+            LIGHTNESS: 50,
+            ALPHA: 0.4,
+            HUE_SPEED: 0.3
+        },
+        BACKGROUND: 'hsla(225, 35%, 3%, 0.96)'
+    },
+    LIGHT: {
+        BASE_HUE: 210,
+        COLOR: {
+            HUE_RANGE: 160,
+            SATURATION: 85,
+            LIGHTNESS: 65,
+            ALPHA: 0.3,
+            HUE_SPEED: 0.25
+        },
+        BACKGROUND: 'hsla(0, 0%, 100%, 0.99)'
     },
     NOISE_OFFSET: 0.001,
     BLUR: 85
 } as const;
+
+const useColorScheme = () => {
+    const [isDark, setIsDark] = useState(() => {
+        // Initialize with the current system preference
+        if (typeof window === 'undefined') return true;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
+
+    useEffect(() => {
+        // Check initial color scheme
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        console.log('Initial color scheme:', mediaQuery.matches ? 'dark' : 'light');
+        setIsDark(mediaQuery.matches);
+
+        // Listen for changes
+        const handler = (e: MediaQueryListEvent) => {
+            console.log('Color scheme changed to:', e.matches ? 'dark' : 'light');
+            setIsDark(e.matches);
+        };
+        mediaQuery.addEventListener('change', handler);
+        return () => mediaQuery.removeEventListener('change', handler);
+    }, []);
+
+    return isDark;
+};
 
 export default function Background() {
     const canvasARef = useRef<HTMLCanvasElement>(null);
@@ -27,6 +67,8 @@ export default function Background() {
     const circleProps = useRef<Float32Array>();
     const baseHue = useRef(220);
     const noise = createNoise2D();
+    const isDark = useColorScheme();
+    const theme = isDark ? PARAMS.DARK : PARAMS.LIGHT;
 
     const initCircle = (index: number) => {
         if (!canvasARef.current || !circleProps.current) return;
@@ -47,7 +89,7 @@ export default function Background() {
             0,
             PARAMS.LIFETIME.BASE + rand(PARAMS.LIFETIME.RANGE),
             PARAMS.RADIUS.BASE + rand(PARAMS.RADIUS.RANGE),
-            (baseHue.current + positionFactor + n * PARAMS.COLOR.HUE_RANGE) % 360
+            (baseHue.current + positionFactor + n * theme.COLOR.HUE_RANGE) % 360
         ];
 
         circleProps.current.set(props, index);
@@ -57,8 +99,7 @@ export default function Background() {
         const [x, y, , , life, ttl, radius, hue] = props;
         
         ctx.save();
-        ctx.fillStyle = `hsla(${hue},${PARAMS.COLOR.SATURATION}%,${PARAMS.COLOR.LIGHTNESS}%,${
-            fadeInOut(life, ttl) * PARAMS.COLOR.ALPHA
+        ctx.fillStyle = `hsla(${hue},${theme.COLOR.SATURATION}%,${theme.COLOR.LIGHTNESS}%,${fadeInOut(life, ttl) * theme.COLOR.ALPHA
         })`;
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, TAU);
@@ -99,13 +140,13 @@ export default function Background() {
         const ctxB = canvasBRef.current.getContext('2d');
         if (!ctxA || !ctxB) return;
 
-        // Clear and fill background with a darker, more neutral color
+        // Clear and fill background with theme-appropriate color
         ctxA.clearRect(0, 0, canvasARef.current.width, canvasARef.current.height);
-        ctxB.fillStyle = 'hsla(225, 35%, 3%, 0.96)';
+        ctxB.fillStyle = theme.BACKGROUND;
         ctxB.fillRect(0, 0, canvasBRef.current.width, canvasBRef.current.height);
 
         // Update and render circles
-        baseHue.current = (baseHue.current + PARAMS.COLOR.HUE_SPEED) % 360;
+        baseHue.current = (baseHue.current + theme.COLOR.HUE_SPEED) % 360;
         for (let i = 0; i < PARAMS.COUNT * 8; i += 8) {
             updateCircle(i);
         }
@@ -143,6 +184,10 @@ export default function Background() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        console.log('Using theme:', isDark ? 'dark' : 'light');
+    }, [isDark]);
 
     return (
         <div className="fixed inset-0 -z-10">
