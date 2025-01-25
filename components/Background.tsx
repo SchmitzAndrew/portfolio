@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createNoise2D } from 'simplex-noise';
 
 // Utility constants and functions
@@ -94,13 +94,15 @@ interface BackgroundProps {
   config?: BackgroundConfig;
   forceDark?: boolean;
   forceLight?: boolean;
+  children?: React.ReactNode;
 }
 
 export default function Background({
   className = "fixed inset-0 -z-10",
   config = {},
   forceDark,
-  forceLight
+  forceLight,
+  children
 }: BackgroundProps) {
   const canvasARef = useRef<HTMLCanvasElement>(null);
   const canvasBRef = useRef<HTMLCanvasElement>(null);
@@ -234,6 +236,7 @@ export default function Background({
     <div className={className}>
       <canvas ref={canvasARef} className="hidden" />
       <canvas ref={canvasBRef} className="fixed inset-0 w-full h-full" />
+      {children}
     </div>
   );
 } 

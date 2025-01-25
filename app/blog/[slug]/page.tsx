@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import { getBlogPosts } from "@/lib/utils";
 
-import Header from "@/components/Header";
+
 
 import Image from "next/image";
 
@@ -92,8 +92,7 @@ export default async function Post({ params }: Params) {
             },
           }),
         }}
-      />
-      <Header />
+        />
       <article className="px-6 sm:px-0 pb-6">
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tighter leading-tight md:leading-none pt-4 pb-6  text-center  text-gray-50">
           {post.metadata.title}

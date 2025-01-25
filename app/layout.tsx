@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -16,7 +14,6 @@ export const metadata: Metadata = {
     images: "/images/og.png",
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -46,7 +43,7 @@ export default function RootLayout({
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
           rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
+          href="/favicon/favicon.svg"
           color="#000000"
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
