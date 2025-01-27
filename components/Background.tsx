@@ -233,10 +233,14 @@ export default function Background({
   }, []);
 
   return (
-    <div className={className}>
-      <canvas ref={canvasARef} className="hidden" />
-      <canvas ref={canvasBRef} className="fixed inset-0 w-full h-full" />
-      {children}
-    </div>
+    <>
+      <div className="fixed inset-0 -z-10">
+        <canvas ref={canvasARef} className="hidden" />
+        <canvas ref={canvasBRef} className="fixed inset-0 w-full h-full" />
+      </div>
+      <main className="relative min-h-screen">
+        {children}
+      </main>
+    </>
   );
 } 
