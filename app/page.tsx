@@ -1,28 +1,39 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react";
 import Background from "@/components/Background";
-import StyledBox from "@/components/StyledBox";
 
 export default function Page() {
+    const [textWidth, setTextWidth] = useState(300);
+    const [textHeight, setTextHeight] = useState(0);
+    const textRef = useRef<HTMLHeadingElement>(null);
+
+    useEffect(() => {
+        if (textRef.current) {
+            const rect = textRef.current.getBoundingClientRect();
+            setTextWidth(rect.width);
+            setTextHeight(rect.height);
+        }
+    }, []);
+
+    const cutoutTop = 37 + textHeight; // top-8 (32px) + text height + 10px gap
+    const cutoutBottom = cutoutTop + 33; // 33px height for cutout
+
     return (
         <Background>
             <div className="w-full h-screen flex items-center justify-center">
-                <StyledBox
-                    variant="outline"
-                    width="45vw"
-                    height="27.81vw"
-                >
-                    <div className="w-full h-full p-8 flex flex-col">
-                        <div className="flex flex-col relative">
-                            <h1 className="text-white text-3xl font-light tracking-wider">
-                                Andrew Schmitz
-                            </h1>
-                            <div className="absolute top-full left-0 right-0 h-20 mt-4" style={{ width: 'fit-content' }}>
-                                <div className="absolute inset-0 border border-white/10" />
-                            </div>
-                        </div>
-                    </div>
-                </StyledBox>
+                <div className="h-[44vh] aspect-[1.618] relative">
+                    {/* Main black box with cutout */}
+                    <div className="absolute inset-0 bg-black" style={{
+                        clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 32px 0%, 32px ${cutoutBottom}px, calc(32px + ${textWidth}px) ${cutoutBottom}px, calc(32px + ${textWidth}px) ${cutoutTop}px, 32px ${cutoutTop}px, 32px 0%, 0% 0%)`
+                    }} />
+                    <h1 ref={textRef} className="absolute top-8 left-8 text-5xl font-bold italic" style={{
+                        WebkitTextStroke: '2px white',
+                        color: 'transparent'
+                    }}>
+                        Andrew Schmitz
+                    </h1>
+                </div>
             </div>
         </Background>
     );
