@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Racing_Sans_One } from "next/font/google";
 
 import { GoogleAnalytics } from "@next/third-parties/google"
 
@@ -7,6 +7,12 @@ import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+const racingSansOne = Racing_Sans_One({
+  weight: '400',
   subsets: ["latin"],
   display: 'swap',
 });
