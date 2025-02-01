@@ -23,8 +23,8 @@ export default function Page() {
         }
     }, []);
 
-    const cutoutTop = 37 + textHeight;
-    const cutoutBottom = cutoutTop + 33;
+    const cutoutTop = 35 + textHeight;
+    const cutoutBottom = cutoutTop + 35;
 
     const textStyle = {
         WebkitTextStroke: '2px white',
@@ -36,11 +36,11 @@ export default function Page() {
             <div className="w-full h-screen flex items-center justify-center">
                 <div className="h-[60vh] aspect-[1.618] relative">
                     <div className="absolute inset-0 bg-black" style={{
-                        clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 32px 0%, 32px ${cutoutBottom}px, calc(32px + ${textWidth}px) ${cutoutBottom}px, calc(32px + ${textWidth}px) ${cutoutTop}px, 32px ${cutoutTop}px, 32px 0%, 0% 0%)`
+                        clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 30px 0%, 30px ${cutoutBottom}px, calc(30px + ${textWidth}px) ${cutoutBottom}px, calc(30px + ${textWidth}px) ${cutoutTop}px, 30px ${cutoutTop}px, 30px 0%, 0% 0%)`
                     }} />
                     <div ref={containerRef} className="absolute top-8 left-8">
-                        <h1 className={`text-6xl font-bold italic ${racingSansOne.className}`} style={textStyle}>
-                            Andrew Schmitz
+                        <h1 className={`text-6xl ${racingSansOne.className}`} style={textStyle}>
+                            andrew schmitz
                         </h1>
                     </div>
                 </div>

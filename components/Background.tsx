@@ -39,34 +39,34 @@ type BackgroundConfig = {
 
 // Default animation parameters
 const DEFAULT_PARAMS = {
-  COUNT: 85,
-  SPEED: { BASE: 0.045, RANGE: 0.06 },
-  LIFETIME: { BASE: 250, RANGE: 300 },
-  RADIUS: { BASE: 140, RANGE: 220 },
+  COUNT: 65,
+  SPEED: { BASE: 0.02, RANGE: 0.03 },
+  LIFETIME: { BASE: 350, RANGE: 400 },
+  RADIUS: { BASE: 180, RANGE: 240 },
   DARK: {
-    BASE_HUE: 220,
+    BASE_HUE: 260,
     COLOR: {
-      HUE_RANGE: 120,
-      SATURATION: 55,
-      LIGHTNESS: 50,
-      ALPHA: 0.4,
-      HUE_SPEED: 0.3
+      HUE_RANGE: 100,
+      SATURATION: 90,
+      LIGHTNESS: 45,
+      ALPHA: 0.5,
+      HUE_SPEED: 0.1
     },
-    BACKGROUND: 'hsla(225, 35%, 3%, 0.96)'
+    BACKGROUND: 'hsla(260, 95%, 4%, 0.99)'
   },
   LIGHT: {
-    BASE_HUE: 210,
+    BASE_HUE: 260,
     COLOR: {
-      HUE_RANGE: 160,
-      SATURATION: 85,
-      LIGHTNESS: 65,
-      ALPHA: 0.3,
-      HUE_SPEED: 0.25
+      HUE_RANGE: 100,
+      SATURATION: 90,
+      LIGHTNESS: 50,
+      ALPHA: 0.45,
+      HUE_SPEED: 0.1
     },
-    BACKGROUND: 'hsla(0, 0%, 100%, 0.99)'
+    BACKGROUND: 'hsla(260, 15%, 10%, 0.98)'
   },
-  NOISE_OFFSET: 0.001,
-  BLUR: 85
+  NOISE_OFFSET: 0.002,
+  BLUR: 65
 } as const;
 
 const useColorScheme = () => {
@@ -150,10 +150,19 @@ export default function Background({
 
   const drawCircle = (ctx: CanvasRenderingContext2D, props: number[]) => {
     const [x, y, , , life, ttl, radius, hue] = props;
+    const fade = fadeInOut(life, ttl);
+
+    // Create gradient for each circle to enhance thermal effect
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+    const baseAlpha = fade * theme.COLOR.ALPHA;
+
+    // Inner color (hotter)
+    gradient.addColorStop(0, `hsla(${(hue + 60) % 360}, 95%, 65%, ${baseAlpha * 1.2})`);
+    // Outer color (cooler)
+    gradient.addColorStop(1, `hsla(${hue}, ${theme.COLOR.SATURATION}%, ${theme.COLOR.LIGHTNESS}%, ${baseAlpha})`);
 
     ctx.save();
-    ctx.fillStyle = `hsla(${hue},${theme.COLOR.SATURATION}%,${theme.COLOR.LIGHTNESS}%,${fadeInOut(life, ttl) * theme.COLOR.ALPHA
-      })`;
+    ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, TAU);
     ctx.fill();
