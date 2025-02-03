@@ -35,38 +35,40 @@ type BackgroundConfig = {
   LIGHT?: ThemeConfig;
   NOISE_OFFSET?: number;
   BLUR?: number;
+  PIXEL_SIZE?: number;
 };
 
 // Default animation parameters
 const DEFAULT_PARAMS = {
-  COUNT: 65,
-  SPEED: { BASE: 0.02, RANGE: 0.03 },
-  LIFETIME: { BASE: 350, RANGE: 400 },
-  RADIUS: { BASE: 180, RANGE: 240 },
+  COUNT: 133,
+  SPEED: { BASE: 0.04, RANGE: 0.03 },
+  LIFETIME: { BASE: 500, RANGE: 400 },
+  RADIUS: { BASE: 77, RANGE: 240 },
   DARK: {
-    BASE_HUE: 260,
+    BASE_HUE: 250,
     COLOR: {
-      HUE_RANGE: 100,
-      SATURATION: 90,
-      LIGHTNESS: 45,
-      ALPHA: 0.5,
-      HUE_SPEED: 0.1
+      HUE_RANGE: 30,
+      SATURATION: 85,
+      LIGHTNESS: 40,
+      ALPHA: 0.45,
+      HUE_SPEED: 0.05
     },
-    BACKGROUND: 'hsla(260, 95%, 4%, 0.99)'
+    BACKGROUND: 'hsla(250, 95%, 4%, 0.99)'
   },
   LIGHT: {
-    BASE_HUE: 260,
+    BASE_HUE: 250,
     COLOR: {
-      HUE_RANGE: 100,
-      SATURATION: 90,
-      LIGHTNESS: 50,
-      ALPHA: 0.45,
-      HUE_SPEED: 0.1
+      HUE_RANGE: 30,
+      SATURATION: 80,
+      LIGHTNESS: 45,
+      ALPHA: 0.4,
+      HUE_SPEED: 0.05
     },
-    BACKGROUND: 'hsla(260, 15%, 10%, 0.98)'
+    BACKGROUND: 'hsla(250, 15%, 10%, 0.98)'
   },
-  NOISE_OFFSET: 0.002,
-  BLUR: 65
+  NOISE_OFFSET: 0.01,
+  BLUR: 0,
+  PIXEL_SIZE: 12
 } as const;
 
 const useColorScheme = () => {
@@ -107,8 +109,10 @@ export default function Background({
   const canvasARef = useRef<HTMLCanvasElement>(null);
   const canvasBRef = useRef<HTMLCanvasElement>(null);
   const circleProps = useRef<Float32Array>();
-  const baseHue = useRef(220);
+  const baseHue = useRef(Math.random() * 360);
   const noise = createNoise2D();
+  const timeOffset = useRef(Math.random() * 10000);
+  const isInitialSetup = useRef(true);
 
   const systemIsDark = useColorScheme();
   const isDark = forceDark ?? (forceLight ? false : systemIsDark);
@@ -128,9 +132,22 @@ export default function Background({
 
     const x = rand(canvasARef.current.width);
     const y = rand(canvasARef.current.height);
-    const n = noise(x * PARAMS.NOISE_OFFSET, y * PARAMS.NOISE_OFFSET);
-    const angle = rand(TAU);
-    const speed = PARAMS.SPEED.BASE + rand(PARAMS.SPEED.RANGE);
+
+    let timeNoise, angle, speed, hueOffset;
+
+    if (isInitialSetup.current) {
+      // Apply time-based noise only during initial setup
+      timeNoise = noise((x + timeOffset.current) * PARAMS.NOISE_OFFSET, (y + timeOffset.current) * PARAMS.NOISE_OFFSET);
+      angle = rand(TAU) + timeNoise * TAU;
+      speed = PARAMS.SPEED.BASE + rand(PARAMS.SPEED.RANGE) + Math.abs(timeNoise) * 0.02;
+      hueOffset = timeNoise * theme.COLOR.HUE_RANGE * 2;
+    } else {
+      // Use simpler randomization for regeneration
+      timeNoise = noise(x * PARAMS.NOISE_OFFSET, y * PARAMS.NOISE_OFFSET);
+      angle = rand(TAU);
+      speed = PARAMS.SPEED.BASE + rand(PARAMS.SPEED.RANGE);
+      hueOffset = timeNoise * theme.COLOR.HUE_RANGE;
+    }
 
     const positionFactor = (x / canvasARef.current.width + y / canvasARef.current.height) * 180;
 
@@ -139,10 +156,10 @@ export default function Background({
       y,
       speed * Math.cos(angle),
       speed * Math.sin(angle),
-      0,
+      0, // Reset life to 0 for regenerated circles
       PARAMS.LIFETIME.BASE + rand(PARAMS.LIFETIME.RANGE),
-      PARAMS.RADIUS.BASE + rand(PARAMS.RADIUS.RANGE),
-      (baseHue.current + positionFactor + n * theme.COLOR.HUE_RANGE) % 360
+      PARAMS.RADIUS.BASE + rand(PARAMS.RADIUS.RANGE) + (isInitialSetup.current ? Math.abs(timeNoise) * 20 : 0),
+      (baseHue.current + positionFactor + hueOffset) % 360
     ];
 
     circleProps.current.set(props, index);
@@ -156,9 +173,9 @@ export default function Background({
     const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
     const baseAlpha = fade * theme.COLOR.ALPHA;
 
-    // Inner color (hotter)
-    gradient.addColorStop(0, `hsla(${(hue + 60) % 360}, 95%, 65%, ${baseAlpha * 1.2})`);
-    // Outer color (cooler)
+    // Inner color (slightly warmer)
+    gradient.addColorStop(0, `hsla(${(hue + 15) % 360}, ${theme.COLOR.SATURATION + 10}%, ${theme.COLOR.LIGHTNESS + 15}%, ${baseAlpha * 1.1})`);
+    // Outer color (base)
     gradient.addColorStop(1, `hsla(${hue}, ${theme.COLOR.SATURATION}%, ${theme.COLOR.LIGHTNESS}%, ${baseAlpha})`);
 
     ctx.save();
@@ -199,19 +216,41 @@ export default function Background({
     const ctxB = canvasBRef.current.getContext('2d');
     if (!ctxA || !ctxB) return;
 
+    // Clear both canvases
     ctxA.clearRect(0, 0, canvasARef.current.width, canvasARef.current.height);
     ctxB.fillStyle = theme.BACKGROUND;
     ctxB.fillRect(0, 0, canvasBRef.current.width, canvasBRef.current.height);
 
     baseHue.current = (baseHue.current + theme.COLOR.HUE_SPEED) % 360;
+    timeOffset.current += 0.001;
+
     for (let i = 0; i < PARAMS.COUNT * 8; i += 8) {
       updateCircle(i);
     }
 
-    ctxB.save();
-    ctxB.filter = `blur(${PARAMS.BLUR}px)`;
-    ctxB.drawImage(canvasARef.current, 0, 0);
-    ctxB.restore();
+    // Create pixelation effect
+    const pixelSize = PARAMS.PIXEL_SIZE;
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    if (tempCtx) {
+      // Set temporary canvas to a smaller size
+      tempCanvas.width = Math.ceil(canvasARef.current.width / pixelSize);
+      tempCanvas.height = Math.ceil(canvasARef.current.height / pixelSize);
+
+      // Configure temp context
+      tempCtx.imageSmoothingEnabled = false;
+
+      // Draw scaled down version
+      tempCtx.drawImage(canvasARef.current, 0, 0, tempCanvas.width, tempCanvas.height);
+
+      // Clear the final canvas and draw pixelated version
+      ctxB.imageSmoothingEnabled = false;
+      ctxB.drawImage(
+        tempCanvas,
+        0, 0, tempCanvas.width, tempCanvas.height,
+        0, 0, canvasBRef.current.width, canvasBRef.current.height
+      );
+    }
 
     requestAnimationFrame(draw);
   };
@@ -224,15 +263,21 @@ export default function Background({
       if (ref.current) {
         ref.current.width = innerWidth;
         ref.current.height = innerHeight;
+        const ctx = ref.current.getContext('2d');
+        if (ctx) {
+          ctx.imageSmoothingEnabled = false;
+        }
       }
     });
   };
 
   useEffect(() => {
     circleProps.current = new Float32Array(PARAMS.COUNT * 8);
+    isInitialSetup.current = true;
     for (let i = 0; i < PARAMS.COUNT * 8; i += 8) {
       initCircle(i);
     }
+    isInitialSetup.current = false;
 
     handleResize();
     draw();
