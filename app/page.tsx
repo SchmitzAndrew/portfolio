@@ -24,7 +24,7 @@ export default function Page() {
     }, []);
 
     const cutoutTop = -38 + textHeight;
-    const cutoutBottom = cutoutTop + 35;
+    const cutoutBottom = cutoutTop + 28;
 
     const textStyle = {
         color: 'white',
@@ -48,8 +48,9 @@ export default function Page() {
                             andrew schmitz
                         </h1>
                         <p className={`${pressStart2P.className} text-sm mt-16 max-w-md text-white`}>
-                            building <a href="https://myminutes.ai" className="underline hover:text-blue-400">minutes</a> @ <a href="https://slam.ventures" className="hover:text-blue-400">SLAM</a>
+                            building <a href="https://myminutes.ai" className="underline hover:text-sky-500/90">minutes</a> @ <a href="https://slam.ventures" className="hover:text-sky-500/90 underline">SLAM</a>
                         </p>
+
                     </div>
                 </div>
             </div>

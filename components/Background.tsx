@@ -47,28 +47,28 @@ const DEFAULT_PARAMS = {
   DARK: {
     BASE_HUE: 250,
     COLOR: {
-      HUE_RANGE: 30,
+      HUE_RANGE: 22,
       SATURATION: 85,
       LIGHTNESS: 40,
-      ALPHA: 0.45,
-      HUE_SPEED: 0.05
+      ALPHA: 0.35,
+      HUE_SPEED: 0.035
     },
     BACKGROUND: 'hsla(250, 95%, 4%, 0.99)'
   },
   LIGHT: {
     BASE_HUE: 250,
     COLOR: {
-      HUE_RANGE: 30,
+      HUE_RANGE: 22,
       SATURATION: 80,
       LIGHTNESS: 45,
-      ALPHA: 0.4,
-      HUE_SPEED: 0.05
+      ALPHA: 0.3,
+      HUE_SPEED: 0.035
     },
     BACKGROUND: 'hsla(250, 15%, 10%, 0.98)'
   },
   NOISE_OFFSET: 0.01,
   BLUR: 0,
-  PIXEL_SIZE: 12
+  PIXEL_SIZE: 10
 } as const;
 
 const useColorScheme = () => {
@@ -149,7 +149,7 @@ export default function Background({
       hueOffset = timeNoise * theme.COLOR.HUE_RANGE;
     }
 
-    const positionFactor = (x / canvasARef.current.width + y / canvasARef.current.height) * 180;
+    const positionFactor = (x / canvasARef.current.width + y / canvasARef.current.height) * 135;
 
     const props = [
       x,
@@ -174,7 +174,7 @@ export default function Background({
     const baseAlpha = fade * theme.COLOR.ALPHA;
 
     // Inner color (slightly warmer)
-    gradient.addColorStop(0, `hsla(${(hue + 15) % 360}, ${theme.COLOR.SATURATION + 10}%, ${theme.COLOR.LIGHTNESS + 15}%, ${baseAlpha * 1.1})`);
+    gradient.addColorStop(0, `hsla(${(hue + 12) % 360}, ${theme.COLOR.SATURATION + 8}%, ${theme.COLOR.LIGHTNESS + 12}%, ${baseAlpha * 1.1})`);
     // Outer color (base)
     gradient.addColorStop(1, `hsla(${hue}, ${theme.COLOR.SATURATION}%, ${theme.COLOR.LIGHTNESS}%, ${baseAlpha})`);
 
@@ -291,6 +291,7 @@ export default function Background({
       <div className="fixed inset-0 -z-10">
         <canvas ref={canvasARef} className="hidden" />
         <canvas ref={canvasBRef} className="fixed inset-0 w-full h-full" />
+        <div className="fixed inset-0 bg-white/[0.07]" />
       </div>
       <main className="relative min-h-screen">
         {children}
