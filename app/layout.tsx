@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="[color-scheme:dark_light]">
       <head>
         <link
           rel="apple-touch-icon"

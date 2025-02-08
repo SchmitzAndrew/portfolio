@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createNoise2D } from 'simplex-noise';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 // Utility constants and functions
 const TAU = Math.PI * 2;
@@ -70,26 +71,6 @@ const DEFAULT_PARAMS = {
   BLUR: 0,
   PIXEL_SIZE: 10
 } as const;
-
-const useColorScheme = () => {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDark(mediaQuery.matches);
-
-    const handler = (e: MediaQueryListEvent) => {
-      setIsDark(e.matches);
-    };
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
-
-  return isDark;
-};
 
 interface BackgroundProps {
   className?: string;
