@@ -14,8 +14,8 @@ const pressStart2P = Press_Start_2P({
 });
 
 export default function Page() {
-    const [textWidth, setTextWidth] = useState(300);
-    const [textHeight, setTextHeight] = useState(0);
+    const [textWidth, setTextWidth] = useState<number | null>(null);
+    const [textHeight, setTextHeight] = useState<number | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const h1Ref = useRef<HTMLHeadingElement>(null);
     const isDark = useColorScheme();
@@ -29,8 +29,8 @@ export default function Page() {
         }
     }, []);
 
-    const cutoutTop = textHeight + 33;
-    const cutoutBottom = cutoutTop + 27;
+    const cutoutTop = textHeight ? textHeight + 33 : 0;
+    const cutoutBottom = textHeight ? cutoutTop + 27 : 0;
 
     const textStyle = {
         color: isDark ? 'white' : 'black',
@@ -42,11 +42,31 @@ export default function Page() {
         WebkitFontSmoothing: 'none'
     } as const;
 
+    const measurementContainer = (
+        <div className="absolute opacity-0 pointer-events-none">
+            <div ref={containerRef}>
+                <h1 ref={h1Ref} className={`${pressStart2P.className} text-3xl`} style={textStyle}>
+                    andrew schmitz
+                </h1>
+            </div>
+        </div>
+    );
+
+    if (!textWidth || !textHeight) {
+        return (
+            <Background>
+                <div className="w-full h-screen flex items-center justify-center">
+                    {measurementContainer}
+                </div>
+            </Background>
+        );
+    }
+
     return (
         <Background>
             <div className="w-full h-screen flex items-center justify-center">
                 <div className="h-[45vh] aspect-[1.618] relative">
-                    <div className={`absolute inset-0 ${isDark ? 'bg-black' : 'bg-white border-2 border-black'}`} style={{
+                    <div className={`absolute inset-0 ${isDark ? 'bg-black' : 'bg-white'}`} style={{
                         clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 30px 0%, 30px ${cutoutBottom}px, calc(30px + ${textWidth}px) ${cutoutBottom}px, calc(30px + ${textWidth}px) ${cutoutTop}px, 30px ${cutoutTop}px, 30px 0%, 0% 0%)`
                     }} />
                     <div ref={containerRef} className="absolute top-8 left-8">
