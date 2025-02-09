@@ -210,15 +210,21 @@ export default function Background({
 
   // Setup effect - now with proper cleanup and theme dependency
   useEffect(() => {
-    circleProps.current = new Float32Array(params.COUNT * 8);
-    isInitialSetup.current = true;
-    for (let i = 0; i < params.COUNT * 8; i += 8) {
-      initCircle(i);
-    }
-    isInitialSetup.current = false;
-
+    // First set up the canvas dimensions
     handleResize();
-    draw();
+
+    // Small delay to ensure dimensions are properly set
+    requestAnimationFrame(() => {
+      circleProps.current = new Float32Array(params.COUNT * 8);
+      isInitialSetup.current = true;
+      for (let i = 0; i < params.COUNT * 8; i += 8) {
+        initCircle(i);
+      }
+      isInitialSetup.current = false;
+
+      // Start the animation loop
+      animationFrame.current = requestAnimationFrame(draw);
+    });
 
     window.addEventListener('resize', handleResize);
     return () => {
