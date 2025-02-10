@@ -15,6 +15,29 @@ const fadeInOut = (life: number, ttl: number) => {
   return Math.min(1, Math.min(progress * 2, (1 - progress) * 2));
 };
 
+// Add throttle utility
+const throttle = (fn: Function, delay: number) => {
+  let lastCall = 0;
+  let timeout: NodeJS.Timeout | null = null;
+
+  return function (this: any, ...args: any[]) {
+    const now = Date.now();
+
+    if (now - lastCall < delay) {
+      // If we're within the delay period, wait until it's over
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        lastCall = now;
+        fn.apply(this, args);
+      }, delay);
+      return;
+    }
+
+    lastCall = now;
+    fn.apply(this, args);
+  };
+};
+
 // Theme configuration
 const THEME = {
   DARK: {
@@ -49,6 +72,15 @@ const ANIMATION = {
   BLUR: 0,
   PIXEL_SIZE: 10
 } as const;
+
+// Add debounce utility at the top with other utility functions
+const debounce = (fn: Function, ms = 1000) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return function (this: any, ...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
 
 interface BackgroundProps {
   className?: string;
@@ -195,7 +227,7 @@ export default function Background({
     requestAnimationFrame(draw);
   };
 
-  const handleResize = () => {
+  const updateCanvasDimensions = () => {
     if (!canvasARef.current || !canvasBRef.current) return;
     const { innerWidth, innerHeight } = window;
     [canvasARef, canvasBRef].forEach(ref => {
@@ -208,32 +240,47 @@ export default function Background({
     });
   };
 
+  const reinitializeCircles = () => {
+    if (!circleProps.current) return;
+    isInitialSetup.current = true;
+    for (let i = 0; i < params.COUNT * 8; i += 8) {
+      initCircle(i);
+    }
+    isInitialSetup.current = false;
+  };
+
+  // Throttled resize handler for dimension updates
+  const handleResize = throttle(() => {
+    updateCanvasDimensions();
+  }, 16); // ~60fps
+
+  // Debounced complete handler for circle reinitialization
+  const handleResizeComplete = debounce(() => {
+    updateCanvasDimensions();
+    reinitializeCircles();
+  }, 250);
+
   // Setup effect - now with proper cleanup and theme dependency
   useEffect(() => {
-    // First set up the canvas dimensions
-    handleResize();
+    updateCanvasDimensions();
 
-    // Small delay to ensure dimensions are properly set
     requestAnimationFrame(() => {
       circleProps.current = new Float32Array(params.COUNT * 8);
-      isInitialSetup.current = true;
-      for (let i = 0; i < params.COUNT * 8; i += 8) {
-        initCircle(i);
-      }
-      isInitialSetup.current = false;
-
-      // Start the animation loop
+      reinitializeCircles();
       animationFrame.current = requestAnimationFrame(draw);
     });
 
     window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResizeComplete);
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResizeComplete);
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, [theme]); // Add theme as a dependency
+  }, [theme]);
 
   return (
     <>
