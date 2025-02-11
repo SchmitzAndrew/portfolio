@@ -106,7 +106,7 @@ export default function Page() {
                         <h1 ref={h1Ref} className={`${pressStart2P.className} text-2xl md:text-3xl`} style={textStyle}>
                             andrew schmitz
                         </h1>
-                        <p className={`${pressStart2P.className}  text-md mt-10  md:mt-12 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
+                        <p className={`${pressStart2P.className}  text-md mt-12  md:mt-16 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
                             building <span className={`${isDark ? 'text-white' : 'text-black'} underline cursor-pointer`} onClick={() => window.open('https://myminutes.ai', '_blank')}>minutes</span> @ <span className={`${isDark ? 'text-white' : 'text-black'} underline cursor-pointer`} onClick={() => window.open('https://slam.ventures', '_blank')}>SLAM</span>
                         </p>
 
