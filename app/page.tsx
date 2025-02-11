@@ -29,7 +29,28 @@ export default function Page() {
                 const computedStyle = window.getComputedStyle(h1Ref.current);
                 const computedFontSize = parseFloat(computedStyle.fontSize);
 
-                setTextWidth(rect.width);
+                // Create a temporary span to measure individual lines
+                const span = document.createElement('span');
+                span.style.font = computedStyle.font;
+                span.style.visibility = 'hidden';
+                span.style.position = 'absolute';
+                span.style.whiteSpace = 'nowrap';
+                span.style.letterSpacing = '0.1em';
+                span.style.transform = 'scale(1, 1.2)';
+                document.body.appendChild(span);
+
+                // Measure "andrew" and "schmitz" separately
+                span.textContent = 'andrew';
+                const andrewWidth = span.getBoundingClientRect().width;
+                span.textContent = 'schmitz';
+                const schmitzWidth = span.getBoundingClientRect().width;
+
+                // Use the width of the longest line when text wraps (on mobile)
+                const maxLineWidth = Math.max(andrewWidth, schmitzWidth);
+                const isMobile = window.innerWidth < 768; // md breakpoint
+                setTextWidth(isMobile ? maxLineWidth : rect.width);
+
+                document.body.removeChild(span);
                 setTextHeight(h1Rect.height);
                 setFontSize(computedFontSize);
             }
