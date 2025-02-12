@@ -4,6 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset cursor styles for interactive elements */
+a,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+[role="button"],
+select,
+summary {
+    cursor: pointer !important;
+}
 /* https://www.gradient-animator.com/ */
 /* Styling for Header */
 .title-gradient{
