@@ -103,14 +103,14 @@ export default function Page() {
                         clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, calc(1em + 2px) 0%, calc(1em + 2px) ${cutoutBottom}px, calc(1em + ${textWidth}px + 2px) ${cutoutBottom}px, calc(1em + ${textWidth}px + 2px) ${cutoutTop}px, calc(1em + 2px) ${cutoutTop}px, calc(1em + 2px) 0%, 0% 0%)`
                     }} />
                     <div ref={containerRef} className="absolute top-[1em] md:top-[1.25em] left-[1em] md:left-[1.25em]">
-                        <h1 ref={h1Ref} className={`${pressStart2P.className} text-2xl md:text-3xl`} style={textStyle}>
-                            andrew schmitz
+                        <h1 ref={h1Ref} className={`${pressStart2P.className} text-2xl md:text-3xl group`} style={textStyle}>
+                            andrew schmitz<span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-3xl font-sans align-middle"> ᵕ̈</span>
                         </h1>
                         <p className={`${pressStart2P.className}  text-md mt-12  md:mt-16 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
                             building <span className={`${isDark ? 'text-white' : 'text-black'} underline cursor-pointer`} onClick={() => window.open('https://myminutes.ai', '_blank')}>minutes</span> @ <span className={`${isDark ? 'text-white' : 'text-black'} underline cursor-pointer`} onClick={() => window.open('https://slam.ventures', '_blank')}>SLAM</span>
                         </p>
 
-                        <p className={`${pressStart2P.className}  text-md mt-6 md:mt-8 mb-3 md:mb-4 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
+                        <p className={`${pressStart2P.className}  text-md mt-12 md:mt-8 mb-3 md:mb-4 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
                             more:
                         </p>
                         <ul className={`${pressStart2P.className} text-md ${isDark ? 'text-white' : 'text-black'} space-y-2 md:space-y-3`}>
