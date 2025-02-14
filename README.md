@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1c405e23-40a8-4fc7-866b-2bcd82fa5a05)# portfolio
+# portfolio
 
 something i've noticed is that the more successful someone is, the simpler their website
 
