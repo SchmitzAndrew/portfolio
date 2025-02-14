@@ -18,10 +18,35 @@ const racingSansOne = Racing_Sans_One({
 });
 
 export const metadata: Metadata = {
-  title: `Andrew Schmitz`,
-  description: `Andrew Schmitz's portfolio.`,
+  title: `andrew schmitz`,
+  description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+  metadataBase: new URL('https://bigschmitz.com'),
   openGraph: {
-    images: "/images/og.png",
+    title: 'andrew schmitz',
+    description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+    url: 'https://bigschmitz.com',
+    siteName: 'andrew schmitz',
+    images: [
+      {
+        url: '/images/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'andrew schmitz',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'andrew schmitz',
+    description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+    images: ['/images/og.png'],
+    creator: '@bigschmitz',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Background from "@/components/Background";
 import { Press_Start_2P } from "next/font/google";
-import CenterUnderline from "@/components/CenterUnderline";
 import ComesInGoesOutUnderline from "@/components/ComesInGoesOutUnderline";
 import { useColorScheme } from "@/hooks/useColorScheme";
 

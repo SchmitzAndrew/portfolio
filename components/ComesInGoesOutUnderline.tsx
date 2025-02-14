@@ -1,5 +1,7 @@
 "use client"
 
+
+//CREDIT: https://www.fancycomponents.dev/
 import React, { useEffect, useRef, useState } from "react"
 import { motion, useAnimationControls, ValueAnimationTransition } from "framer-motion"
 
