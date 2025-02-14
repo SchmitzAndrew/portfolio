@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'andrew schmitz',
     description: `ᵕ̈`,
     images: ['/images/og.png'],
-    creator: '@bigschmitz',
+    creator: '@big_schmitz',
   },
   robots: {
     index: true,
