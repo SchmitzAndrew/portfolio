@@ -8,6 +8,3 @@ thank you to:
 
 [https://github.com/danielpetho/fancy](underline animation)
 [https://github.com/crnacura/AmbientCanvasBackgrounds](background inspo)
-
-
-

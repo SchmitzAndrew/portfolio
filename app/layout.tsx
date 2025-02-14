@@ -19,13 +19,12 @@ const racingSansOne = Racing_Sans_One({
 
 export const metadata: Metadata = {
   title: `andrew schmitz`,
-  description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+  description: `andrew schmitz's portfolio. software engineer building minutes at SLAM.`,
   metadataBase: new URL('https://bigschmitz.com'),
   openGraph: {
     title: 'andrew schmitz',
-    description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+    description: `ᵕ̈`,
     url: 'https://bigschmitz.com',
-    siteName: 'andrew schmitz',
     images: [
       {
         url: '/images/og.png',
@@ -40,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'andrew schmitz',
-    description: `andrew schmitz's portfolio. Software engineer building minutes at SLAM.`,
+    description: `ᵕ̈`,
     images: ['/images/og.png'],
     creator: '@bigschmitz',
   },
