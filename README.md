@@ -1,10 +1,16 @@
-# portfolio
+![image](https://github.com/user-attachments/assets/1c405e23-40a8-4fc7-866b-2bcd82fa5a05)# portfolio
 
-something i've noticed is that the more successfuly someone is, the simpler their website
+something i've noticed is that the more successful someone is, the simpler their website
 
 that's why mine took a month to make
 
 thank you to:
 
-[https://github.com/danielpetho/fancy](underline animation)
-[https://github.com/crnacura/AmbientCanvasBackgrounds](background inspo)
+[underline animation](https://github.com/danielpetho/fancy)
+[background inspo](https://github.com/crnacura/AmbientCanvasBackgrounds)
+
+my favorite shirt:
+
+![front of shirt](https://raw.githubusercontent.com/SchmitzAndrew/portfolio/c5836b76c3ff25bc3c4bbc94ca1104d056886a77/public/shirt_1.jpg)
+
+![back of shirt](https://raw.githubusercontent.com/SchmitzAndrew/portfolio/c5836b76c3ff25bc3c4bbc94ca1104d056886a77/public/shirt_2.jpg)
