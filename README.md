@@ -7,6 +7,7 @@ that's why mine took a month to make
 thank you to:
 
 [underline animation](https://github.com/danielpetho/fancy)
+
 [background inspo](https://github.com/crnacura/AmbientCanvasBackgrounds)
 
 my favorite shirt:
