@@ -12,6 +12,6 @@ thank you to:
 
 my favorite shirt:
 
-![front of shirt](https://raw.githubusercontent.com/SchmitzAndrew/portfolio/c5836b76c3ff25bc3c4bbc94ca1104d056886a77/public/shirt_1.jpg)
+![front of shirt](/shirt_1.jpg)
 
-![back of shirt](https://raw.githubusercontent.com/SchmitzAndrew/portfolio/c5836b76c3ff25bc3c4bbc94ca1104d056886a77/public/shirt_2.jpg)
+![back of shirt](/shirt_2.jpg)
