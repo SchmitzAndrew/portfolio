@@ -106,7 +106,7 @@ export default function Page() {
                             andrew schmitz<span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-3xl font-sans align-middle"> ᵕ̈</span>
                         </h1>
                         <p className={`${pressStart2P.className}  text-md mt-12  md:mt-16 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
-                            building something new...
+                            building 🦍
                         </p>
 
                         <p className={`${pressStart2P.className}  text-md mt-12 md:mt-8 mb-3 md:mb-4 max-w-md ${isDark ? 'text-white' : 'text-black'}`}>
